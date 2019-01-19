@@ -1,5 +1,8 @@
 # NSG : Navigating Spread-out Graph For Approximate Nearest Neighbor Search
 
+<!--ts-->
+<!--te-->
+
 ## Introduction
 
 NSG is a graph-based approximate nearest neighbor search (ANNS) algorithm. It provides a flexible and efficient solution for the metric-free large-scale ANNS on dense real vectors. It implements the algorithm of our paper, [Fast Approximate Nearest Neighbor Search With Navigating Spread-out Graphs.](https://arxiv.org/abs/1707.00143)
@@ -256,6 +259,12 @@ Reference to cite when you use NSG in a research paper:
   url       = {http://arxiv.org/abs/1707.00143},
 }
 ```
+
+## TODO
+
+[x] Add Docker support
+[ ] Improve compatibility of SIMD-related codes
+[ ] Python wrapper
 
 ## License
 
