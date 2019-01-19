@@ -289,10 +289,10 @@ Reference to cite when you use NSG in a research paper:
 
 ## TODO
 
-[x] Add Docker support
-[ ] Improve compatibility of SIMD-related codes
-[ ] Python wrapper
-[ ] Add travis CI
+- [x] Add Docker support
+- [ ] Improve compatibility of SIMD-related codes
+- [ ] Python wrapper
+- [ ] Add travis CI
 
 ## License
 
