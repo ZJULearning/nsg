@@ -85,6 +85,8 @@ Among all the ***graph-based algorithms***, NSG has ***the smallest index size**
 + Boost 1.55+
 + [TCMalloc](http://goog-perftools.sourceforge.net/doc/tcmalloc.html)
 
+**IMPORTANT NOTE: this code uses AVX-256 intructions for fast distance computation, so your machine MUST support AVX-256 intructions, this can be checked using `cat /proc/cpuinfo | grep avx2`.** 
+
 ### Compile On Ubuntu/Debian
 
 1. Install Dependencies:
