@@ -1,6 +1,34 @@
 # NSG : Navigating Spread-out Graph For Approximate Nearest Neighbor Search
 
+Table of Contents
+=================
 <!--ts-->
+   * [NSG : Navigating Spread-out Graph For Approximate Nearest Neighbor Search](#nsg--navigating-spread-out-graph-for-approximate-nearest-neighbor-search)
+      * [Introduction](#introduction)
+      * [Performance](#performance)
+         * [Datasets](#datasets)
+         * [Compared Algorithms](#compared-algorithms)
+            * [Graph-based ANNS algorithms:](#graph-based-anns-algorithms)
+            * [Other popular ANNS algorithms:](#other-popular-anns-algorithms)
+         * [Results](#results)
+      * [Building Instruction](#building-instruction)
+         * [Prerequisites](#prerequisites)
+         * [Compile On Ubuntu/Debian](#compile-on-ubuntudebian)
+         * [(Optional) Docker Usage](#optional-docker-usage)
+      * [Usage](#usage)
+         * [Building NSG Index](#building-nsg-index)
+            * [Step 1. Build kNN Graph](#step-1-build-knn-graph)
+            * [Step 2. Convert kNN Graph to NSG](#step-2-convert-knn-graph-to-nsg)
+         * [Searching via NSG Index](#searching-via-nsg-index)
+      * [Parameters used in Our Paper](#parameters-used-in-our-paper)
+         * [NSG Building](#nsg-building)
+            * [Step 1. Build kNN Graph](#step-1-build-knn-graph-1)
+            * [Step 2. Convert kNN Graph to NSG](#step-2-convert-knn-graph-to-nsg-1)
+         * [Pre-built kNN Graph and NSG Index](#pre-built-knn-graph-and-nsg-index)
+      * [Performance on Taobao's E-commerce Data](#performance-on-taobaos-e-commerce-data)
+      * [Reference](#reference)
+      * [TODO](#todo)
+      * [License](#license)
 <!--te-->
 
 ## Introduction
@@ -265,6 +293,7 @@ Reference to cite when you use NSG in a research paper:
 [x] Add Docker support
 [ ] Improve compatibility of SIMD-related codes
 [ ] Python wrapper
+[ ] Add travis CI
 
 ## License
 
