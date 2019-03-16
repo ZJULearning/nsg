@@ -7,8 +7,6 @@ Table of Contents
 * [Performance](#performance)
 	 * [Datasets](#datasets)
 	 * [Compared Algorithms](#compared-algorithms)
-			* [Graph-based ANNS algorithms:](#graph-based-anns-algorithms)
-			* [Other popular ANNS algorithms:](#other-popular-anns-algorithms)
 	 * [Results](#results)
 * [Building Instruction](#building-instruction)
 	 * [Prerequisites](#prerequisites)
@@ -16,13 +14,9 @@ Table of Contents
 	 * [(Optional) Docker Usage](#optional-docker-usage)
 * [Usage](#usage)
 	 * [Building NSG Index](#building-nsg-index)
-			* [Step 1. Build kNN Graph](#step-1-build-knn-graph)
-			* [Step 2. Convert kNN Graph to NSG](#step-2-convert-knn-graph-to-nsg)
 	 * [Searching via NSG Index](#searching-via-nsg-index)
 * [Parameters used in Our Paper](#parameters-used-in-our-paper)
 	 * [NSG Building](#nsg-building)
-			* [Step 1. Build kNN Graph](#step-1-build-knn-graph-1)
-			* [Step 2. Convert kNN Graph to NSG](#step-2-convert-knn-graph-to-nsg-1)
 	 * [Pre-built kNN Graph and NSG Index](#pre-built-knn-graph-and-nsg-index)
 * [Performance on Taobao's E-commerce Data](#performance-on-taobaos-e-commerce-data)
 * [Reference](#reference)
@@ -32,7 +26,7 @@ Table of Contents
 
 ## Introduction
 
-NSG is a graph-based approximate nearest neighbor search (ANNS) algorithm. It provides a flexible and efficient solution for the metric-free large-scale ANNS on dense real vectors. It implements the algorithm of our paper, [Fast Approximate Nearest Neighbor Search With Navigating Spread-out Graphs.](https://arxiv.org/abs/1707.00143)
+NSG is a graph-based approximate nearest neighbor search (ANNS) algorithm. It provides a flexible and efficient solution for the metric-free large-scale ANNS on dense real vectors. It implements the algorithm of our PVLDB paper - [Fast Approximate Nearest Neighbor Search With The Navigating Spread-out Graphs](http://www.vldb.org/pvldb/vol12/p461-fu.pdf).
 NSG has been intergrated into the search engine of Taobao (Alibaba Group) for billion scale ANNS in E-commerce scenario.
 
 ## Performance
@@ -53,8 +47,8 @@ NSG has been intergrated into the search engine of Taobao (Alibaba Group) for bi
 + [HNSW](https://arxiv.org/abs/1603.09320) ([code](https://github.com/searchivarius/nmslib)) : *Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs*
 + [DPG](https://arxiv.org/abs/1610.02455) ([code](https://github.com/DBWangGroupUNSW/nns_benchmark)) : *Approximate Nearest Neighbor Search on High Dimensional Data --- Experiments, Analyses, and Improvement (v1.0)*
 + [EFANNA](https://arxiv.org/abs/1609.07228) ([code](https://github.com/fc731097343/efanna)) : *EFANNA: An Extremely Fast Approximate Nearest Neighbor Search Algorithm Based on kNN Graph*
-+ NSG-naive: a designed based-line, please refer to [our paper](https://arxiv.org/abs/1707.00143).
-+ NSG: This project, please refer to [our paper](https://arxiv.org/abs/1707.00143).
++ NSG-naive: a designed based-line, please refer to [our PVLDB paper](http://www.vldb.org/pvldb/vol12/p461-fu.pdf).
++ NSG: This project, please refer to [our PVLDB paper](http://www.vldb.org/pvldb/vol12/p461-fu.pdf).
 
 #### Other popular ANNS algorithms:
 
@@ -278,12 +272,16 @@ Distribute:  randomly divide the dataset into 12 subsets and build 12 NSGs. Sear
 
 Reference to cite when you use NSG in a research paper:
 ```
-@article{DBLP:journals/corr/FuWC17,
+@article{FuNSG17,
   author    = {Cong Fu and Chao Xiang and Changxu Wang and Deng Cai},
-  title     = {Fast Approximate Nearest Neighbor Search With Navigating Spreading-out Graphs},
-  journal   = {CoRR},
-  volume    = {abs/1707.00143},
-  url       = {http://arxiv.org/abs/1707.00143},
+  title     = {Fast Approximate Nearest Neighbor Search With The Navigating Spreading-out Graphs},
+  journal   = {{PVLDB}},
+  volume    = {12},
+  number    = {5},
+  pages     = {461 - 474},
+  year      = {2019},
+  url       = {http://www.vldb.org/pvldb/vol12/p461-fu.pdf},
+  doi       = {10.14778/3303753.3303754}
 }
 ```
 
