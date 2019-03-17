@@ -155,7 +155,7 @@ To use NSG for ANNS, an NSG index must be built first. Here are the instructions
 
 #### Step 1. Build kNN Graph
 
-Firstly, we need to prepare an kNN graph.
+Firstly, we need to prepare a kNN graph.
 
 We suggest you use our [efanna\_graph](https://github.com/ZJULearning/efanna\_graph) to build this kNN graph. But you can also use any alternatives you like, such as KGraph or faiss.
 
@@ -208,7 +208,8 @@ For example, if your features are of dimension 70, then it should be extend to d
 ### NSG Building
 
 We use the following parameters to get the index in Fig. 6 of [our paper](https://arxiv.org/abs/1707.00143).
-(We use [efanna_graph](https://github.com/ZJULearning/efanna_graph) to build the kNN graph)
+
+We use [efanna_graph](https://github.com/ZJULearning/efanna_graph) to build the kNN graph.
 
 #### Step 1. Build kNN Graph
 
@@ -244,8 +245,6 @@ $ nsg/build/tests/test_nsg_index gist.fvecs gist_400nn.graph 60 70 500 gist.nsg	
 ### Pre-built kNN Graph and NSG Index
 
 Here we also provide our pre-built kNN graph and NSG index files used in our papar's experiments.
-
-Those files are generated using the parameters and commands above.
 
 - kNN Graph:
 	+ SIFT1M - [sift_200nn.graph](http://downloads.zjulearning.org:8081/sift_200nn.graph)
