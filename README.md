@@ -247,11 +247,11 @@ $ nsg/build/tests/test_nsg_index gist.fvecs gist_400nn.graph 60 70 500 gist.nsg	
 Here we also provide our pre-built kNN graph and NSG index files used in our papar's experiments.
 
 - kNN Graph:
-	+ SIFT1M - [sift_200nn.graph](http://downloads.zjulearning.org:8081/sift_200nn.graph)
-	+ GIST1M - [gist_400nn.graph](http://downloads.zjulearning.org:8081/gist_400nn.graph)
+	+ SIFT1M - [sift_200nn.graph](http://downloads.zjulearning.org:8081/nsg/sift_200nn.graph)
+	+ GIST1M - [gist_400nn.graph](http://downloads.zjulearning.org:8081/nsg/gist_400nn.graph)
 - NSG Index:
-	+ SIFT1M - [sift.nsg](http://downloads.zjulearning.org:8081/sift.nsg)
-	+ GIST1M - [gist.nsg](http://downloads.zjulearning.org:8081/gist.nsg)
+	+ SIFT1M - [sift.nsg](http://downloads.zjulearning.org:8081/nsg/sift.nsg)
+	+ GIST1M - [gist.nsg](http://downloads.zjulearning.org:8081/nsg/gist.nsg)
 
 ## Performance on Taobao's E-commerce Data
 
