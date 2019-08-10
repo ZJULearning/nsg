@@ -5,19 +5,19 @@ Table of Contents
 <!--ts-->
 * [Introduction](#introduction)
 * [Performance](#performance)
-	 * [Datasets](#datasets)
-	 * [Compared Algorithms](#compared-algorithms)
-	 * [Results](#results)
+     * [Datasets](#datasets)
+     * [Compared Algorithms](#compared-algorithms)
+     * [Results](#results)
 * [Building Instruction](#building-instruction)
-	 * [Prerequisites](#prerequisites)
-	 * [Compile On Ubuntu/Debian](#compile-on-ubuntudebian)
-	 * [(Optional) Docker Usage](#optional-docker-usage)
+     * [Prerequisites](#prerequisites)
+     * [Compile On Ubuntu/Debian](#compile-on-ubuntudebian)
+     * [(Optional) Docker Usage](#optional-docker-usage)
 * [Usage](#usage)
-	 * [Building NSG Index](#building-nsg-index)
-	 * [Searching via NSG Index](#searching-via-nsg-index)
+     * [Building NSG Index](#building-nsg-index)
+     * [Searching via NSG Index](#searching-via-nsg-index)
 * [Parameters used in Our Paper](#parameters-used-in-our-paper)
-	 * [NSG Building](#nsg-building)
-	 * [Pre-built kNN Graph and NSG Index](#pre-built-knn-graph-and-nsg-index)
+     * [NSG Building](#nsg-building)
+     * [Pre-built kNN Graph and NSG Index](#pre-built-knn-graph-and-nsg-index)
 * [Performance on Taobao's E-commerce Data](#performance-on-taobaos-e-commerce-data)
 * [Reference](#reference)
 * [TODO](#todo)
@@ -35,8 +35,8 @@ NSG has been intergrated into the search engine of Taobao (Alibaba Group) for bi
 
 + [SIFT1M and GIST1M](http://corpus-texmex.irisa.fr/)
 + Synthetic datasets: RAND4M and GAUSS5M
-	- RAND4M: 4 million 128-dimension vectors sampled from a uniform distribution of [-1, 1].
-	- GAUSS5M: 5 million 128-dimension vectors sampled from a gaussion ditribution N(0,3).
+    - RAND4M: 4 million 128-dimension vectors sampled from a uniform distribution of [-1, 1].
+    - GAUSS5M: 5 million 128-dimension vectors sampled from a gaussion ditribution N(0,3).
 
 ### Compared Algorithms
 
@@ -223,8 +223,8 @@ We use [efanna_graph](https://github.com/ZJULearning/efanna_graph) to build the 
 
 + Commands:
 ```shell
-$ efanna_graph/tests/test_nndescent sift.fvecs sift_200nn.graph 200 200 10 10 100	# SIFT1M
-$ efanna_graph/tests/test_nndescent gist.fvecs gist_400nn.graph 400 400 12 15 100	# GIST1M
+$ efanna_graph/tests/test_nndescent sift.fvecs sift_200nn.graph 200 200 10 10 100    # SIFT1M
+$ efanna_graph/tests/test_nndescent gist.fvecs gist_400nn.graph 400 400 12 15 100    # GIST1M
 ```
 
 #### Step 2. Convert kNN Graph to NSG
@@ -238,8 +238,8 @@ $ efanna_graph/tests/test_nndescent gist.fvecs gist_400nn.graph 400 400 12 15 10
 
 + Commands:
 ```shell
-$ nsg/build/tests/test_nsg_index sift.fvecs sift_200nn.graph 40 50 500 sift.nsg		# SIFT1M
-$ nsg/build/tests/test_nsg_index gist.fvecs gist_400nn.graph 60 70 500 gist.nsg		# GIST1M
+$ nsg/build/tests/test_nsg_index sift.fvecs sift_200nn.graph 40 50 500 sift.nsg        # SIFT1M
+$ nsg/build/tests/test_nsg_index gist.fvecs gist_400nn.graph 60 70 500 gist.nsg        # GIST1M
 ```
 
 ### Pre-built kNN Graph and NSG Index
@@ -247,11 +247,11 @@ $ nsg/build/tests/test_nsg_index gist.fvecs gist_400nn.graph 60 70 500 gist.nsg	
 Here we also provide our pre-built kNN graph and NSG index files used in our papar's experiments.
 
 - kNN Graph:
-	+ SIFT1M - [sift_200nn.graph](http://downloads.zjulearning.org:8081/nsg/sift_200nn.graph)
-	+ GIST1M - [gist_400nn.graph](http://downloads.zjulearning.org:8081/nsg/gist_400nn.graph)
+    + SIFT1M - [sift_200nn.graph](http://downloads.zjulearning.org.cn/nsg/sift_200nn.graph)
+    + GIST1M - [gist_400nn.graph](http://downloads.zjulearning.org.cn/nsg/gist_400nn.graph)
 - NSG Index:
-	+ SIFT1M - [sift.nsg](http://downloads.zjulearning.org:8081/nsg/sift.nsg)
-	+ GIST1M - [gist.nsg](http://downloads.zjulearning.org:8081/nsg/gist.nsg)
+    + SIFT1M - [sift.nsg](http://downloads.zjulearning.org.cn/nsg/sift.nsg)
+    + GIST1M - [gist.nsg](http://downloads.zjulearning.org.cn/nsg/gist.nsg)
 
 ## Performance on Taobao's E-commerce Data
 
