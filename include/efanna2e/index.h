@@ -45,10 +45,10 @@ class Index {
   inline const float *GetDataset() const { return data_; }
  protected:
   const size_t dimension_;
-  const float *data_;
+  const float *data_ = nullptr;
   size_t nd_;
   bool has_built;
-  Distance* distance_;
+  Distance* distance_ = nullptr;
 };
 
 }

@@ -47,7 +47,7 @@ class IndexNSG : public Index {
 
     CompactGraph final_graph_;
 
-    Index *initializer_;
+    Index *initializer_ = nullptr;
     void init_graph(const Parameters &parameters);
     void get_neighbors(
         const float *query,
@@ -74,7 +74,7 @@ class IndexNSG : public Index {
     unsigned width;
     unsigned ep_;
     std::vector<std::mutex> locks;
-    char* opt_graph_;
+    char* opt_graph_ = nullptr;
     size_t node_size;
     size_t data_len;
     size_t neighbor_len;
