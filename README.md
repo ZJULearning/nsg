@@ -1,4 +1,7 @@
 # NSG : Navigating Spread-out Graph For Approximate Nearest Neighbor Search
+## Cooperation
+
+If you are interested in the research line of nearest neighbor search or application and looking for a cooperation please feel free to contect me via fc731097343@gmail.com
 
 Table of Contents
 =================
