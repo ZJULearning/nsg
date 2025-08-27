@@ -1,10 +1,11 @@
 import numpy as np
 import pytest
+import faiss
 from nsg_python import NSG, Metric
 
 SIFT_BASE_PATH = "python-bindings/tests/data/sift/sift_base.fvecs"
 SIFT_QUERY_PATH = "python-bindings/tests/data/sift/sift_query.fvecs"
-SIFT_KNN_GRAPH_PATH = "python-bindings/tests/data/sift_200nn.graph"
+SIFT_KNN_GRAPH_PATH = "python-bindings/tests/data/test200.graph"
 
 def read_fvecs(fname):
     """Load fvecs file into numpy array"""
@@ -43,15 +44,38 @@ def test_build_and_search(sift_data, tmp_path):
     assert all(len(row) == k for row in results2)
 
 def test_build_and_search_opt(sift_data):
+    faiss.omp_set_num_threads(faiss.omp_get_max_threads())
     base, queries = sift_data
     dim = base.shape[1]
-    
-    nsg = NSG(dimension=dim, num_points=len(base), metric=Metric.L2)
-    nsg.build_index(base, SIFT_KNN_GRAPH_PATH, L=10, R=10, C=10)
+
+    nsg = NSG(dimension=dim, num_points=len(base), metric=Metric.FAST_L2)
+    nsg.build_index(base, SIFT_KNN_GRAPH_PATH, L=40, R=50, C=500)
     nsg.optimize_graph(base)
-    
+
     k = 10
-    results = nsg.search_opt(queries[:5], k, search_L=100) 
+    test_queries = queries[:5]
+    nsg_results = nsg.search_opt(test_queries, k, search_L=100)
+
+    # Create Faiss FlatL2 index for ground truth
+    faiss_index = faiss.IndexFlatL2(dim)
+    faiss_index.add(base.astype(np.float32))
     
-    assert len(results) == 5
-    assert all(len(row) == k for row in results)
+    # Get ground truth results
+    _, ground_truth_ids = faiss_index.search(test_queries.astype(np.float32), k)
+
+    # Calculate recall for each query
+    total_recall = 0.0
+    for i, (nsg_result, gt_result) in enumerate(zip(nsg_results, ground_truth_ids)):
+        nsg_set = set(nsg_result)
+        gt_set = set(gt_result)
+        
+        recall = len(nsg_set.intersection(gt_set)) / len(gt_set)
+        total_recall += recall
+        
+        print(f"Query {i}: Recall = {recall:.4f}")
+    
+    average_recall = total_recall / len(test_queries)
+    print(f"Average Recall@{k}: {average_recall:.4f}")
+
+    assert len(nsg_results) == 5
+    assert all(len(row) == k for row in nsg_results)

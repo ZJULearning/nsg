@@ -203,16 +203,6 @@ public:
     {
         index->Load(path.c_str());
     }
-
-    size_t get_aligned_dimension() const
-    {
-        return aligned_dimension;
-    }
-
-    bool needs_alignment() const
-    {
-        return dimension != aligned_dimension;
-    }
 };
 
 PYBIND11_MODULE(nsg_python, m) {
@@ -247,8 +237,5 @@ PYBIND11_MODULE(nsg_python, m) {
         .def("save_index", &NSGWrapper::save_index,
             py::arg("path_to_index"))
         .def("load_index", &NSGWrapper::load_index,
-            py::arg("path_to_index"))
-        .def("get_aligned_dimension", &NSGWrapper::get_aligned_dimension)
-        .def("needs_alignment", &NSGWrapper::needs_alignment);
-
-    }
+            py::arg("path_to_index"));
+}
