@@ -291,7 +291,7 @@ Reference to cite when you use NSG in a research paper:
 
 - [x] Add Docker support
 - [ ] Improve compatibility of SIMD-related codes
-- [ ] Python wrapper
+- [x] Python wrapper
 - [ ] Add travis CI
 
 ## License

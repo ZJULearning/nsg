@@ -5,10 +5,10 @@ import tempfile
 import numpy as np
 import pybind11
 import setuptools
-from setuptools import Extension, setup
+from setuptools import Extension, setup, find_packages
 from setuptools.command.build_ext import build_ext
 
-__version__ = '0.1.0'
+__version__ = '0.1.3'
 
 def has_flag(compiler, flagname):
     """Return a boolean indicating whether a flag name is supported on
@@ -103,7 +103,7 @@ include_dirs = [
 ]
 
 source_files = [
-    'python-bindings/bindings.cpp',
+    'pynsg/bindings.cpp',
     'src/index_nsg.cpp',
     'src/index.cpp',
 ]
@@ -126,7 +126,7 @@ if sys.platform != 'darwin':
 
 ext_modules = [
     Extension(
-        'nsg_python',
+        'pynsg._bindings',
         source_files,
         include_dirs=include_dirs,
         libraries=libraries,
@@ -137,18 +137,56 @@ ext_modules = [
     ),
 ]
 
+def get_long_description():
+    readme = open('pynsg/README.md', 'r')
+    readme_text = readme.read()
+    readme.close()
+    return readme_text
+
 setup(
-    name='nsg_python',
+    name='pynsg',
     version=__version__,
     description='Python bindings for Navigating Spreading-Out Graph (NSG)',
-    long_description='NSG',
+    long_description=get_long_description(),
+    long_description_content_type="text/markdown",
     author='Theodor Wuebker',
-    url='https://github.com/ZJULearning/nsg',
+    url='https://github.com/twuebker/nsg',
+    project_urls={
+        'Original NSG': 'https://github.com/ZJULearning/nsg',
+        'Bug Reports': 'https://github.com/twuebker/nsg/issues',
+        'Source': 'https://github.com/twuebker/nsg',
+    },
     ext_modules=ext_modules,
+    packages=find_packages(),
     install_requires=[
         'numpy>=1.16.0',
     ],
+    extras_require={
+	'knn': ['faiss-cpu>=1.12.0'],	
+    },
+    entry_points={
+        'console_scripts': [
+            'nsg-build-knn=pynsg.graph_creator:main',
+        ],
+    },
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
     python_requires=">=3.6",
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+		'Operating System :: POSIX :: Linux',
+        'Topic :: Scientific/Engineering',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
+    keywords='nsg graph nearest neighbor search ann',
+    license='MIT',
 )

@@ -26,7 +26,7 @@ private:
         size_t num_points = buf.shape[0];
         float* input_data = static_cast<float*>(buf.ptr);
 
-        // the input is freed so we need to create a copy.
+        // the input is freed by data_align so we need to create a copy.
         float* data_copy = new float[num_points * dimension];
         std::memcpy(data_copy, input_data, num_points * dimension * sizeof(float));
 
@@ -61,9 +61,6 @@ public:
 
         n_points = buf.shape[0];
 
-
-
-        // Align the data and store it
         size_t temp_aligned_dim;
         float* aligned_data = align_data(data, temp_aligned_dim);
         aligned_dimension = temp_aligned_dim;
@@ -88,7 +85,6 @@ public:
         size_t temp_aligned_dim;
         float* temp_aligned = align_data(data, temp_aligned_dim);
 
-        // Use RAII to ensure cleanup
         std::unique_ptr<float, void(*)(float*)> aligned_guard(temp_aligned, [](float* ptr) {
 #ifdef __APPLE__
           delete[] ptr;
@@ -113,7 +109,6 @@ public:
         size_t temp_aligned_dim;
         float* aligned_queries = align_data(queries, temp_aligned_dim);
 
-        // Use RAII to clean up
         std::unique_ptr<float, void(*)(float*)> query_guard(aligned_queries, [](float* ptr) {
 #ifdef __APPLE__
           delete[] ptr;
@@ -138,7 +133,6 @@ public:
                 results[i][j] = static_cast<int>(indices[j]);
             }
         }
-
         return results;
     }
 
@@ -173,7 +167,6 @@ public:
 #endif
         });
 
-
         std::vector<std::vector<int>> results(n_queries, std::vector<int>(k));
 
         efanna2e::Parameters search_params;
@@ -190,7 +183,6 @@ public:
                 results[i][j] = static_cast<int>(indices[j]);
             }
         }
-
         return results;
     }
 
@@ -205,12 +197,10 @@ public:
     }
 };
 
-PYBIND11_MODULE(nsg_python, m) {
-    m.doc() = "NSG Python Wrapper with Data Alignment";
+PYBIND11_MODULE(_bindings, m) {
+    m.doc() = "NSG Python Wrapper";
     py::enum_<efanna2e::Metric>(m, "Metric")
-        .value("L2", efanna2e::L2)
-        .value("INNER_PRODUCT", efanna2e::INNER_PRODUCT)
-        .value("FAST_L2", efanna2e::FAST_L2);
+        .value("L2", efanna2e::L2);
 
     py::class_<NSGWrapper>(m, "NSG")
         .def(py::init<size_t, size_t, efanna2e::Metric>(),

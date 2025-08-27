@@ -424,7 +424,6 @@ void IndexNSG::Build(size_t n, const float *data, const Parameters &parameters) 
   }
 
   tree_grow(parameters);
-	
 
   unsigned max = 0, min = 1e6, avg = 0;
   for (size_t i = 0; i < nd_; i++) {
@@ -434,7 +433,7 @@ void IndexNSG::Build(size_t n, const float *data, const Parameters &parameters) 
     avg += size;
   }
   avg /= 1.0 * nd_;
-  //printf("Degree Statistics: Max = %d, Min = %d, Avg = %d\n", max, min, avg);
+  printf("Degree Statistics: Max = %d, Min = %d, Avg = %d\n", max, min, avg);
 
   has_built = true;
   delete cut_graph_;

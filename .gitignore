@@ -1,7 +1,7 @@
 build/
 cmake-build-debug/
-python-bindings/tests/data
-nsg_python.egg-info/
+pynsg/tests/data
+pynsg.egg-info/
 tmp/
 dist/
 .venv/

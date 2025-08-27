@@ -1,11 +1,14 @@
+import os
+
+import faiss
 import numpy as np
 import pytest
-import faiss
-from nsg_python import NSG, Metric
 
-SIFT_BASE_PATH = "python-bindings/tests/data/sift/sift_base.fvecs"
-SIFT_QUERY_PATH = "python-bindings/tests/data/sift/sift_query.fvecs"
-SIFT_KNN_GRAPH_PATH = "python-bindings/tests/data/test200.graph"
+from pynsg import NSG, Metric, create_graph_file
+
+SIFT_BASE_PATH = "pynsg/tests/data/sift/sift_base.fvecs"
+SIFT_QUERY_PATH = "pynsg/tests/data/sift/sift_query.fvecs"
+SIFT_KNN_GRAPH_PATH = "pynsg/tests/data/test200.graph"
 
 def read_fvecs(fname):
     """Load fvecs file into numpy array"""
@@ -17,6 +20,9 @@ def read_fvecs(fname):
 
 @pytest.fixture(scope="module")
 def sift_data():
+    if not (os.path.isfile(SIFT_BASE_PATH) and os.path.isfile(SIFT_QUERY_PATH) and os.path.isfile(SIFT_KNN_GRAPH_PATH)):
+        pytest.skip("Test data is not available. Please download the SIFT 1M dataset and place it under pynsg/tests/data/sift."
+                    "Please make sure a knn graph file is placed under pynsg/tests/data.")
     base = read_fvecs(SIFT_BASE_PATH)
     queries = read_fvecs(SIFT_QUERY_PATH)
     return base, queries
@@ -48,7 +54,7 @@ def test_build_and_search_opt(sift_data):
     base, queries = sift_data
     dim = base.shape[1]
 
-    nsg = NSG(dimension=dim, num_points=len(base), metric=Metric.FAST_L2)
+    nsg = NSG(dimension=dim, num_points=len(base), metric=Metric.L2)
     nsg.build_index(base, SIFT_KNN_GRAPH_PATH, L=40, R=50, C=500)
     nsg.optimize_graph(base)
 
