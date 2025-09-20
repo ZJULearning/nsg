@@ -1,1 +1,8 @@
 build/
+cmake-build-debug/
+pynsg/tests/data
+pynsg.egg-info/
+tmp/
+dist/
+.venv/
+*__pycache__/
