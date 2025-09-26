@@ -18,7 +18,12 @@ This package provides Python bindings for the original NSG implementation:
 - **Original Authors**: Cong Fu, Chao Xiang, Changxu Wang, Deng Cai
 - **Python Bindings**: Created to enable easy integration with Python-based machine learning workflows (such as the ANN benchmarks)
 
-## Hardware Requirements
+## Requirements
+The CPP code requires g++, cmake, libboost-dev and libgoogle-perftools-dev, which can be installed via 
+```sudo apt-get install g++ cmake libboost-dev libgoogle-perftools-dev```.
+All Python dependencies will be installed automatically. 
+
+### Hardware
 
 The underlying CPP implementation of NSG requires both OpenMP and AVX2.
 
@@ -92,12 +97,6 @@ Available distance metrics:
 - `Metric.L2`: Standard L2 (Euclidean) distance
 > [!NOTE]
 > While cosine similarity is not directly exposed, it can be computed by first normalizing the vectors and then using L2.
-
-## Requirements
-
-- Python 3.6+
-- NumPy >= 1.16.0
-- A k-NN graph file (can be generated using tools like FAISS or other ANN libraries)
 
 ## Generating k-NN Graphs
 

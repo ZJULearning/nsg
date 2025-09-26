@@ -165,10 +165,10 @@ namespace efanna2e{
 #else
 #ifdef __SSE2__
       #define SSE_DOT(addr1, addr2, dest, tmp1, tmp2) \
-          tmp1 = _mm128_loadu_ps(addr1);\
-          tmp2 = _mm128_loadu_ps(addr2);\
-          tmp1 = _mm128_mul_ps(tmp1, tmp2); \
-          dest = _mm128_add_ps(dest, tmp1);
+          tmp1 = _mm_loadu_ps(addr1);\
+          tmp2 = _mm_loadu_ps(addr2);\
+          tmp1 = _mm_mul_ps(tmp1, tmp2); \
+          dest = _mm_add_ps(dest, tmp1);
       __m128 sum;
       __m128 l0, l1, l2, l3;
       __m128 r0, r1, r2, r3;
@@ -258,9 +258,9 @@ namespace efanna2e{
 #else
 #ifdef __SSE2__
 #define SSE_L2NORM(addr, dest, tmp) \
-    tmp = _mm128_loadu_ps(addr); \
-    tmp = _mm128_mul_ps(tmp, tmp); \
-    dest = _mm128_add_ps(dest, tmp);
+    tmp = _mm_loadu_ps(addr); \
+    tmp = _mm_mul_ps(tmp, tmp); \
+    dest = _mm_add_ps(dest, tmp);
 
     __m128 sum;
     __m128 l0, l1, l2, l3;

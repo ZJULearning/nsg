@@ -8,7 +8,7 @@ import setuptools
 from setuptools import Extension, setup, find_packages
 from setuptools.command.build_ext import build_ext
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 def has_flag(compiler, flagname):
     """Return a boolean indicating whether a flag name is supported on
